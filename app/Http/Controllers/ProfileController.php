@@ -15,4 +15,12 @@ class ProfileController extends Controller
     {
         return view('profile.about');
     }
+
+    public function friends(){
+        return view('profile.friends');
+    }
+
+    public function photos(){
+        return view('profile.photos');
+    }
 }

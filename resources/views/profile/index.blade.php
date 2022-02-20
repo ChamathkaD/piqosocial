@@ -155,7 +155,9 @@
                         Edit Details
                     </button>
             </div>
-            <div class="col-span-8 h-fit p-6  bg-white border-b border-gray-200 rounded-2xl">hii</div>
+            <div class="col-span-8 h-fit p-6  bg-white border-b border-gray-200 rounded-2xl">
+                <x-create-post/>
+            </div>
         </div>
 
     </div>

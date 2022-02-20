@@ -22,7 +22,7 @@ Route::permanentRedirect('/', '/login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 //  profile
-Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
+Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
 
 Route::get('profile/about', [ProfileController::class, 'about'])->name('profile.about');
 

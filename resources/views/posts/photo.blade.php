@@ -16,4 +16,12 @@
         <x-post.likes />
     </x-slot>
 
+    <x-slot:comments>
+        <x-post.comments />
+    </x-slot>
+
+    <x-slot:createComment>
+        <x-post.create-comment />
+    </x-slot>
+
 </x-post>

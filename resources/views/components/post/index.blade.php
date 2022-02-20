@@ -14,4 +14,12 @@
        {{ $likes }}
     </div>
 
+    <div>
+        {{ $comments }}
+    </div>
+
+    <div class="flex items-center">
+        {{ $createComment }}
+    </div>
+
 </div>

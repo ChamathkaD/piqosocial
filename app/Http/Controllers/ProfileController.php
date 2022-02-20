@@ -16,11 +16,18 @@ class ProfileController extends Controller
         return view('profile.about');
     }
 
-    public function friends(){
+    public function friends()
+    {
         return view('profile.friends');
     }
 
-    public function photos(){
+    public function photos()
+    {
         return view('profile.photos');
+    }
+
+    public function videos()
+    {
+        return view('profile.videos');
     }
 }

@@ -10,7 +10,6 @@
 <x-dropdown align="right" width="48">
     <x-slot name="trigger">
 
-
         <button class="flex items-center">
 
             <a class="hover:bg-gray-200 p-2 rounded-full focus:border focus:border-blue-500">
@@ -53,7 +52,6 @@
                 </button>
             </form>
         </x-dropdown-link>
-
 
     </x-slot>
 </x-dropdown>

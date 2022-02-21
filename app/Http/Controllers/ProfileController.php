@@ -35,4 +35,9 @@ class ProfileController extends Controller
     {
         return view('profile.works.create');
     }
+
+    public function aboutDetails()
+    {
+        return view('profile.about-details.create');
+    }
 }

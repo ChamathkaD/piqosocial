@@ -30,4 +30,9 @@ class ProfileController extends Controller
     {
         return view('profile.videos');
     }
+
+    public function workAndEducation()
+    {
+        return view('profile.works.create');
+    }
 }

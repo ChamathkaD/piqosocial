@@ -25,7 +25,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::controller(ProfileController::class)->group(function () {
     
     Route::get('profile', 'index')->name('profile.index');
-    Route::get('profile/about', 'about')->name('profile.about');
+    Route::get('profile/about/overview', 'about')->name('profile.about.overview');
+    Route::get('profile/about/work-and-education', 'workAndEducation')->name('profile.about.work-and-education');
     Route::get('profile/friends', 'friends')->name('profile.friends');
     Route::get('profile/photos', 'photos')->name('profile.photos');
     Route::get('profile/videos', 'videos')->name('profile.videos');

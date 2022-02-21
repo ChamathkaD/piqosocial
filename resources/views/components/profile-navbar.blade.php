@@ -6,7 +6,7 @@
         </li>
 
         <li class="hover:bg-gray-200 rounded-md">
-            <a href="{{ route('profile.about') }}"
+            <a href="{{ route('profile.about.overview') }}"
                 class="m-2 block rounded md:bg-transparent text-slate-600 md:p-0">About</a>
         </li>
 

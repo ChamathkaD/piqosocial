@@ -10,29 +10,7 @@
 
         <div class="flex flex-row mt-4">
 
-            <div class="bg-white p-5 basis-2/6 border-r-2 shadow-md rounded-l-md">
-
-                <h1 class="text-2xl font-bold mb-3">About</h1>
-
-                <ul class="font-semibold text-slate-600 space-y-2">
-                    <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
-                        Overview
-                    </li>
-                    <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
-                        Work and Education
-                    </li>
-                    <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
-                        Place Lived
-                    </li>
-                    <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
-                        Contact & Basic Info
-                    </li>
-                    <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
-                        Details About You
-                    </li>
-                </ul>
-
-            </div>
+            @include('profile.partials.about-category')
 
             <div class="bg-white p-5 basis-4/6 shadow-md rounded-r-md">
 

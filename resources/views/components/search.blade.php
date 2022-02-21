@@ -2,7 +2,7 @@
 
     <input class="w-96 h-10 pl-6 pr-8 text-sm border-none focus:outline-none focus:ring-0 rounded-full bg-gray-100" type="search" name="search" placeholder="Search your piqosocial friends...">
 
-    <button type="submit" class="absolute right-0 top-0 mt-6 mr-4">
+    <button type="submit" class="absolute right-0 mr-4">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -12,13 +12,13 @@
 
         <div class="grid grid-cols-12 gap-4">
 
-            <div class="col-span-4 h-fit p-6  bg-white border-b border-gray-200 rounded-2xl">
+            <div class="col-span-12 lg:col-span-4 h-fit p-6  bg-white border-b border-gray-200 rounded-2xl">
                 
                 @include('profile.partials.intro')
                 
             </div>
 
-            <div class="col-span-8 h-fit p-6  bg-white border-b border-gray-200 rounded-2xl">
+            <div class="col-span-12 lg:col-span-8 h-fit p-6  bg-white border-b border-gray-200 rounded-2xl">
 
                 <x-create-post/>
 

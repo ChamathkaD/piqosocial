@@ -8,7 +8,7 @@
 
                 @include('partials.activity')
 
-                <div class="col-span-6  space-y-3">
+                <div class="col-span-6 space-y-3">
 
                     @include('partials.friends')
 

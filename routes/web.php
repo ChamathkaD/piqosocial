@@ -23,16 +23,17 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 //  profile
 Route::controller(ProfileController::class)->name('profile.')->prefix('profile')->group(function () {
-    
+
     Route::get('/', 'index')->name('index');
     Route::get('/about/overview', 'about')->name('about.overview');
     Route::get('/about/work-and-education', 'workAndEducation')->name('about.work-and-education');
     Route::get('/about/about-details', 'aboutDetails')->name('about.about-details');
+    Route::get('/about/password', 'changePassword')->name('about.password');
     Route::get('/friends', 'friends')->name('friends');
     Route::get('/photos', 'photos')->name('photos');
     Route::get('/videos', 'videos')->name('videos');
     Route::get('/about/contacts', 'contact')->name('about.contact');
-  
+
 });
 
 Route::resource('posts', PostController::class)->except(['index','create','show']);

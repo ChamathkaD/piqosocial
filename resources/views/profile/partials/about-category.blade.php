@@ -23,9 +23,14 @@
                 Contact & Basic Info
             </li>
         </a>
-        <a href="#">
+        <a href="{{ route('profile.about.about-details') }}">
             <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
                 Details About You
+            </li>
+        </a>
+        <a href="{{ route('profile.about.password') }}">
+            <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
+                Manage Password
             </li>
         </a>
     </ul>

@@ -38,10 +38,15 @@ class ProfileController extends Controller
 
     public function aboutDetails()
     {
-        return view('profile.about-details.create');
+        return view('profile.about-details.edit');
     }
 
     public function contact(){
         return view('profile.contact.create');
+    }
+
+    public function changePassword()
+    {
+        return view('profile.password.edit');
     }
 }

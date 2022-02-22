@@ -1,4 +1,4 @@
-<div class="col-span-3 h-fit p-6  bg-white border-b border-gray-200 rounded-2xl">
+<div class="col-span-12 lg:col-span-3 h-fit p-6 bg-white border-b border-gray-200 rounded-2xl">
     <div class="flex justify-between items-center">
         <div class="text-lg font-bold">
             Activity

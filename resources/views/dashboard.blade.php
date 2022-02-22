@@ -1,14 +1,14 @@
 <x-app-layout>
 
-    <div class="py-12">
+    <div class="py-6 lg:py-12">
 
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
 
-            <div class="grid grid-cols-12 gap-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 px-4 sm:px-0">
 
                 @include('partials.activity')
 
-                <div class="col-span-6 space-y-3">
+                <div class="col-span-12 lg:col-span-6 space-y-3">
 
                     @include('partials.friends')
 

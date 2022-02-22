@@ -18,7 +18,7 @@
                 Place Lived
             </li>
         </a>
-        <a href="#">
+        <a href="{{ route('profile.about.contact')}}">
             <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
                 Contact & Basic Info
             </li>

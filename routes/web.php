@@ -22,15 +22,16 @@ Route::permanentRedirect('/', '/login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 //  profile
-Route::controller(ProfileController::class)->group(function () {
+Route::controller(ProfileController::class)->name('profile.')->prefix('profile')->group(function () {
     
-    Route::get('profile', 'index')->name('profile.index');
-    Route::get('profile/about/overview', 'about')->name('profile.about.overview');
-    Route::get('profile/about/work-and-education', 'workAndEducation')->name('profile.about.work-and-education');
-    Route::get('profile/about/about-details', 'aboutDetails')->name('profile.about.about-details');
-    Route::get('profile/friends', 'friends')->name('profile.friends');
-    Route::get('profile/photos', 'photos')->name('profile.photos');
-    Route::get('profile/videos', 'videos')->name('profile.videos');
+    Route::get('/', 'index')->name('index');
+    Route::get('/about/overview', 'about')->name('about.overview');
+    Route::get('/about/work-and-education', 'workAndEducation')->name('about.work-and-education');
+    Route::get('/about/about-details', 'aboutDetails')->name('about.about-details');
+    Route::get('/friends', 'friends')->name('friends');
+    Route::get('/photos', 'photos')->name('photos');
+    Route::get('/videos', 'videos')->name('videos');
+    Route::get('/about/contacts', 'contact')->name('about.contact');
   
 });
 

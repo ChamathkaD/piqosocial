@@ -40,4 +40,8 @@ class ProfileController extends Controller
     {
         return view('profile.about-details.create');
     }
+
+    public function contact(){
+        return view('profile.contact.create');
+    }
 }

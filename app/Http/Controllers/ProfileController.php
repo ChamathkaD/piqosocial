@@ -49,4 +49,9 @@ class ProfileController extends Controller
     {
         return view('profile.password.edit');
     }
+
+    public function address()
+    {
+        return view('profile.address.create');
+    }
 }

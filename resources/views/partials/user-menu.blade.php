@@ -16,7 +16,7 @@
             <img src="https://i.pravatar.cc/150?img=31" alt="default img" class="h-12 w-12 rounded-full" />
             <div class="ml-2 leading-none">
                 <h3 class="font-semibold">Chamayhka Dissanayaka</h3>
-                <a href="#" class="text-xs text-gray-400 hover:text-gray-500">See Your Profile</a>
+                <a href="{{ route('profile.index')}}" class="text-xs text-gray-400 hover:text-gray-500">See Your Profile</a>
             </div>
         </div>
 

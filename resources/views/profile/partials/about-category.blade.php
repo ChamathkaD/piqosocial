@@ -13,7 +13,7 @@
                 Work and Education
             </li>
         </a>
-        <a href="#">
+        <a href="{{ route('profile.about.address')}}">
             <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
                 Place Lived
             </li>

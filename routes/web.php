@@ -33,6 +33,7 @@ Route::controller(ProfileController::class)->name('profile.')->prefix('profile')
     Route::get('/photos', 'photos')->name('photos');
     Route::get('/videos', 'videos')->name('videos');
     Route::get('/about/contacts', 'contact')->name('about.contact');
+    Route::get('/about/address', 'address')->name('about.address');
 
 });
 

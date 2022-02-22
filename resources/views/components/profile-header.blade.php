@@ -19,15 +19,15 @@
 
 </div>
 
-<div class="relative flex justify-between items-center">
-    <div class="flex">
+<div class="relative sm:flex justify-between items-center">
+    <div class="sm:flex">
         <img src="https://i.pravatar.cc/150?img=31" alt="default img"
-            class="h-15 w-15 rounded-full ml-10 -mt-10 ring-4 ring-white" />
+            class="h-15 w-15 rounded-full ml-52 sm:ml-10 -mt-10 ring-4 ring-white" />
 
-        <div class="ml-3 mt-3 space-y-1">
+        <div class="text-center sm:text-left sm:ml-3 mt-3 space-y-1">
             <h2 class="text-3xl font-black">Chamathka Dissanayaka</h2>
             <p class="text-gray-500 font-semibold">1.8K Friends</p>
-            <div class="flex -space-x-1 overflow-hidden">
+            <div class="place-content-center sm:place-content-start flex -space-x-1 overflow-hidden">
                 <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
                     src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt="">
@@ -56,7 +56,8 @@
         </div>
     </div>
 
-    <button
+    <div class="text-center mt-3">
+        <button
         class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm text-white font-semibold bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
@@ -66,4 +67,5 @@
         </svg>
         Edit Profile
     </button>
+    </div>
 </div>

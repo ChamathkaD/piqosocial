@@ -3,30 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hobby;
+use Auth;
 use Illuminate\Http\Request;
 
 class HobbyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -35,41 +16,13 @@ class HobbyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $user = Auth::user();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Hobby  $hobby
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Hobby $hobby)
-    {
-        //
-    }
+        $hobbyIDs = $request->name;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Hobby  $hobby
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Hobby $hobby)
-    {
-        //
-    }
+        $user->hobbies()->syncWithoutDetaching($hobbyIDs);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hobby  $hobby
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Hobby $hobby)
-    {
-        //
+        return back();
     }
 
     /**
@@ -80,6 +33,10 @@ class HobbyController extends Controller
      */
     public function destroy(Hobby $hobby)
     {
-        //
+        $user = Auth::user();
+
+        $user->hobbies()->detach($hobby);
+
+        return back();
     }
 }

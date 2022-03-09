@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -14,39 +16,11 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $photos = Auth::user()->photos()->get(['id', 'photo']);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Photo  $photo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Photo $photo)
-    {
-        //
+        return view('profile.photos', [
+            'photos' => $photos
+        ]);
     }
 
     /**
@@ -57,7 +31,9 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        return view('posts.edit-photo', [
+            'photo' => $photo,
+        ]);
     }
 
     /**
@@ -69,7 +45,19 @@ class PhotoController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
-        //
+        if ($request->hasFile('photo')) {
+            $newPhoto = $request->file('photo');
+            Storage::disk('public')->delete($photo->photo);
+        }
+
+        $photo->update([
+            'user_id' => Auth::id(),
+            'description' => $request->input('body'),
+            'photo' => $newPhoto->storePublicly('uploads/photos', ['disk' => 'public']),
+            'status' => $request->boolean('status'),
+        ]);
+
+        return back();
     }
 
     /**
@@ -80,6 +68,10 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        Storage::disk('public')->delete($photo->photo);
+
+        $photo->delete();
+
+        return back();
     }
 }

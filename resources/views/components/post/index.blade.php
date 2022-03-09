@@ -15,11 +15,11 @@
     </div>
 
     <div>
-        {{ $comments }}
+        {{ $comments ?? null }}
     </div>
 
     <div class="flex items-center">
-        {{ $createComment }}
+        {{ $createComment ?? null }}
     </div>
 
 </div>

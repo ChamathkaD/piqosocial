@@ -1,10 +1,15 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpKernel\Profiler\Profile;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\HobbyController;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EducationController;
+use App\Http\Controllers\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,24 +24,38 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::permanentRedirect('/', '/login');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
 
-//  profile
-Route::controller(ProfileController::class)->name('profile.')->prefix('profile')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/', 'index')->name('index');
-    Route::get('/about/overview', 'about')->name('about.overview');
-    Route::get('/about/work-and-education', 'workAndEducation')->name('about.work-and-education');
-    Route::get('/about/about-details', 'aboutDetails')->name('about.about-details');
-    Route::get('/about/password', 'changePassword')->name('about.password');
-    Route::get('/friends', 'friends')->name('friends');
-    Route::get('/photos', 'photos')->name('photos');
-    Route::get('/videos', 'videos')->name('videos');
-    Route::get('/about/contacts', 'contact')->name('about.contact');
-    Route::get('/about/address', 'address')->name('about.address');
+    #  profile routes
+    Route::controller(ProfileController::class)->name('profile.')->prefix('profile')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/about/overview', 'about')->name('about.overview');
+        Route::get('/about/about-details', 'aboutDetails')->name('about.about-details');
+        Route::put('/about/update/about-details', 'updateAboutDetails')->name('update.about-details');
+        Route::get('/delete/profile-photo', 'deleteProfilePhoto')->name('delete.profile-photo');
+        Route::get('/delete/cover-photo', 'deleteCoverPhoto')->name('delete.cover-photo');
+        Route::match(['get', 'put'], '/password/update', 'updatePassword')->name('update.password');
+        Route::get('/friends', 'friends')->name('friends');
+        Route::get('/videos', 'videos')->name('videos');
+        Route::match(['get', 'put'], '/about/contacts', 'updateContact')->name('contact.update');
+    });
 
+    Route::resource('works', WorkController::class)->except(['index', 'show']);
+
+    Route::resource('educations', EducationController::class)->except(['index', 'show', 'create']);
+
+    Route::get('/about/address', [AddressController::class, 'create'])->name('addresses.create');
+    Route::put('/about/address', [AddressController::class, 'update'])->name('addresses.update');
+
+    Route::resource('posts', PostController::class)->except(['index', 'create', 'show']);
+
+    Route::resource('hobbies', HobbyController::class)->only(['store', 'destroy']);
+
+    Route::resource('languages', LanguageController::class)->only(['store', 'destroy']);
+
+    Route::resource('photos', PhotoController::class)->except(['create', 'show', 'store']);
 });
 
-Route::resource('posts', PostController::class)->except(['index','create','show']);
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

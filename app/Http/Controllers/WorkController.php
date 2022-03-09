@@ -4,19 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Work;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WorkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +15,20 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        $works = Auth::user()->works;
+
+        $schools = Auth::user()->educations()->where('type', 'school')->get();
+
+        $highSchools = Auth::user()->educations()->where('type', 'high school')->get();
+
+        $universities = Auth::user()->educations()->where('type', 'university')->get();
+
+        return view('profile.works.create', [
+            'works' => $works,
+            'schools' => $schools,
+            'highSchools' => $highSchools,
+            'universities' => $universities,
+        ]);
     }
 
     /**
@@ -35,18 +39,18 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'company' => ['required', 'string', 'max:30'],
+            'position' => ['required', 'string', 'max:50'],
+            'city' => ['nullable', 'string', 'max:25'],
+            'description' => ['nullable', 'string'],
+            'year' => ['nullable', 'date_format:Y'],
+            'status' => ['required', 'boolean'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Work  $work
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Work $work)
-    {
-        //
+        Auth::user()->works()->create($validated);
+
+        return back();
     }
 
     /**
@@ -57,7 +61,9 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        //
+        return view('profile.works.edit', [
+            'work' => $work
+        ]);
     }
 
     /**
@@ -69,7 +75,18 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
-        //
+        $validated = $request->validate([
+            'company' => ['required', 'string', 'max:30'],
+            'position' => ['required', 'string', 'max:50'],
+            'city' => ['nullable', 'string', 'max:25'],
+            'description' => ['nullable', 'string'],
+            'year' => ['nullable', 'date_format:Y'],
+            'status' => ['required', 'boolean'],
+        ]);
+
+        $work->update($validated);
+
+        return back();
     }
 
     /**
@@ -80,6 +97,8 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $work->delete();
+
+        return back();
     }
 }

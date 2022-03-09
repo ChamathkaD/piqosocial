@@ -4,49 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Education;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreEducationRequest;
 
 class EducationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEducationRequest $request)
     {
-        //
-    }
+        Auth::user()->educations()->create($request->validated());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Education  $education
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Education $education)
-    {
-        //
+        return back();
     }
 
     /**
@@ -57,7 +30,9 @@ class EducationController extends Controller
      */
     public function edit(Education $education)
     {
-        //
+        return view('profile.educations.edit', [
+            'education' => $education,
+        ]);
     }
 
     /**
@@ -67,9 +42,11 @@ class EducationController extends Controller
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Education $education)
+    public function update(StoreEducationRequest $request, Education $education)
     {
-        //
+        $education->update($request->validated());
+
+        return back();
     }
 
     /**
@@ -80,6 +57,8 @@ class EducationController extends Controller
      */
     public function destroy(Education $education)
     {
-        //
+        $education->delete();
+
+        return back();
     }
 }

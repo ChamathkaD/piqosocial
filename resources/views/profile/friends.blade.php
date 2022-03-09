@@ -2,10 +2,10 @@
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 
-        <x-profile-header />
+        <x-profile.header />
 
         <div class="my-3">
-            <x-profile-navbar />
+            <x-profile.navbar />
         </div>
 
         <div class="bg-white p-5 basis-2/6 border-r-2 shadow-md rounded-l-md">

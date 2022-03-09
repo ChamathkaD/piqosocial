@@ -2,21 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -24,62 +14,43 @@ class AddressController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $address = Auth::user()->address;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Address  $address
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Address $address)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Address  $address
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Address $address)
-    {
-        //
+        return view('profile.address.create', [
+            'address' => $address
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(Request $request)
     {
-        //
+        # validation (customized validation error message and attribute name)
+        $validated = $request->validate([
+            'address' => 'required|string',
+            'city' => 'nullable|string',
+            'zip' => 'required|string',
+            'status' => 'required|boolean',
+        ], [
+            'address.required' => 'Please enter your address here.'
+        ], [
+            'zip' => 'postal code'
+        ]);
+
+
+        # update user address
+        Auth::user()->address()->updateOrCreate(
+            [
+                'user_id' => Auth::id(),
+            ],
+            $validated
+        );
+
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Address  $address
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Address $address)
-    {
-        //
-    }
 }

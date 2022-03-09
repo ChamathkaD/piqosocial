@@ -12,13 +12,15 @@
 
                     @include('partials.friends')
 
-                    @include('posts.create')
+                    @include('posts.partials.create')
 
                     @foreach ($posts as $post)
-                        @include('posts.default')
+                        @include('posts.partials.default')
                     @endforeach
 
-                    {{-- @include('posts.photo') --}}
+                    @foreach ($photos as $photo)
+                        @include('posts.partials.photo')
+                    @endforeach
 
                 </div>
 

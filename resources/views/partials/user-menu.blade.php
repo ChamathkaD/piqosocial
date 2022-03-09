@@ -5,7 +5,7 @@
             class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
 
             <div class="flex flex-row items-center space-x-4">
-                <img src="https://i.pravatar.cc/150?img=31" alt="default img" class="h-8 w-8 rounded-full" />
+                <img src="{{ asset(Auth::user()->profile_photo_url) }}" alt="default img" class="h-8 w-8 rounded-full" />
             </div>
         </button>
     </x-slot>
@@ -13,9 +13,9 @@
     <x-slot name="content">
 
         <div class="flex items-center px-4 py-2">
-            <img src="https://i.pravatar.cc/150?img=31" alt="default img" class="h-12 w-12 rounded-full" />
+            <img src="{{ asset(Auth::user()->profile_photo_url) }}" alt="default img" class="h-12 w-12 rounded-full" />
             <div class="ml-2 leading-none">
-                <h3 class="font-semibold">Chamayhka Dissanayaka</h3>
+                <h3 class="font-semibold">{{ Auth::user()->fullname }}</h3>
                 <a href="{{ route('profile.index')}}" class="text-xs text-gray-400 hover:text-gray-500">See Your Profile</a>
             </div>
         </div>

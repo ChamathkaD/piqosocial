@@ -1,7 +1,7 @@
 <x-post>
 
     <x-slot:heading>
-        <x-post.heading :post="$post" />
+        <x-post.heading :post="$post" :routeName="'posts'" />
     </x-slot>
 
     <div>

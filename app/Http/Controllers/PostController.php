@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,13 +17,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create([
-            'user_id' => Auth::id(),
-            'body' => $request->input('body'),
-            'status' => $request->input('status'),
-        ]);
+        if ($request->hasFile('photo')) {
+            
+            $photo = $request->file('photo');
 
-        return back();
+            if ($photo->isValid()) {
+                
+                Photo::create([
+                    'user_id' => Auth::id(),
+                    'description' => $request->input('body'),
+                    'photo' => $photo->storePublicly('uploads/photos', ['disk' => 'public']),
+                    'status' => $request->boolean('status'),
+                ]);
+
+                return back();
+
+            }
+
+        } else {
+
+            $user = Auth::user();
+
+            $user->posts()->create($request->all());
+
+            return back();
+
+        }
+
     }
 
     /**
@@ -33,7 +54,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -45,7 +68,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->all());
+
+        return redirect()->route('dashboard');
     }
 
     /**

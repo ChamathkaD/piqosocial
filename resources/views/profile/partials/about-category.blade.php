@@ -8,17 +8,17 @@
                 Overview
             </li>
         </a>
-        <a href="{{ route('profile.about.work-and-education') }}">
+        <a href="{{ route('works.create') }}">
             <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
                 Work and Education
             </li>
         </a>
-        <a href="{{ route('profile.about.address')}}">
+        <a href="{{ route('addresses.create')}}">
             <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
-                Place Lived
+                Places Lived
             </li>
         </a>
-        <a href="{{ route('profile.about.contact')}}">
+        <a href="{{ route('profile.contact.update')}}">
             <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
                 Contact & Basic Info
             </li>
@@ -28,7 +28,7 @@
                 Details About You
             </li>
         </a>
-        <a href="{{ route('profile.about.password') }}">
+        <a href="{{ route('profile.update.password') }}">
             <li class="hover:bg-gray-100 py-2 rounded -ml-2 pl-2">
                 Manage Password
             </li>

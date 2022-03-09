@@ -1,11 +1,12 @@
 <x-post>
 
     <x-slot:heading>
-        <x-post.heading />
+        <x-post.heading :post="$photo" :routeName="'photos'"/>
     </x-slot>
 
-    <div>
-        <img src="https://i.pravatar.cc/150?img=31" alt="default img" class="rounded-lg h-full w-full" />
+    <div class="space-y-2">
+        <span>{{ $photo->description }}</span>
+        <img src="{{ asset($photo->photo) }}" alt="default img" class="rounded-lg h-full w-full" />
     </div>
 
     <x-slot:icons>

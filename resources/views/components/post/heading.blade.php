@@ -1,12 +1,14 @@
 <div class="flex items-center">
-    <img src="https://i.pravatar.cc/150?img=31" alt="default img" class="h-12 w-12 rounded-full" />
+    <img src="{{ asset($post->user->profile_photo_url) }}" alt="default img" class="h-12 w-12 rounded-full" />
     <div class="ml-2">
-        <h3 class="font-bold">{{ $post->user->first_name }}</h3>
+        <h3 class="font-bold">{{ $post->user->fullname }}</h3>
         <p class="text-xs font-bold text-gray-400">{{ $post->created_at }}</p>
     </div>
 </div>
 
 
+@if ($post->user->id === Auth::id())
+    
 <x-dropdown align="right" width="48">
     <x-slot name="trigger">
 
@@ -25,19 +27,21 @@
 
     <x-slot name="content">
        
-        <x-dropdown-link>
-            <div class="flex justify-start items-center hover:cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-                Edit
-            </div>
-        </x-dropdown-link>
+        @if (!request()->routeIs($routeName.'.edit'))
+            <x-dropdown-link href="{{ route($routeName . '.edit', $post->id) }}">
+                <div class="flex justify-start items-center hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                    Edit
+                </div>
+            </x-dropdown-link>
+        @endif
 
         <x-dropdown-link class="hover:bg-red-50">
-            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+            <form action="{{ route($routeName . '.destroy', $post->id) }}" method="POST">
 
                 @csrf
                 @method('DELETE')
@@ -55,3 +59,5 @@
 
     </x-slot>
 </x-dropdown>
+
+@endif
